@@ -26,9 +26,11 @@ export default class App extends Component {
         <MainMenu />
         <Workspace>
           <Pane>
-            <Control label='Brightness' value={Store.data.levels.brightness} min={-100} max={100} onChange={e => Store.setLevel('brightness', e.target.value)} />
-            <Control label='Contrast' value={Store.data.levels.contrast} min={0} max={100} onChange={e => Store.setLevel('contrast', e.target.value)} />
-            <Control label='Saturation' value={Store.data.levels.vibrance} min={-100} max={100} onChange={e => Store.setLevel('vibrance', e.target.value)} />
+            <Control label='Brightness' value={Store.data.levels.brightness} min={0} max={200} onChange={e => Store.setLevel('brightness', e.target.value)} />
+            <Control label='Contrast' value={Store.data.levels.contrast} min={0} max={200} onChange={e => Store.setLevel('contrast', e.target.value)} />
+            <Control label='Saturation' value={Store.data.levels.saturation} min={0} max={200} onChange={e => Store.setLevel('saturation', e.target.value)} />
+            <Control label='Grayscale' value={Store.data.levels.grayscale} min={0} max={200} onChange={e => Store.setLevel('grayscale', e.target.value)} />
+            <Control label='Sepia' value={Store.data.levels.sepia} min={0} max={200} onChange={e => Store.setLevel('sepia', e.target.value)} />
             <Control label='Hue' value={Store.data.levels.hue} min={0} max={360} onChange={e => Store.setLevel('hue', e.target.value)} />
             <Control label='Blur' value={Store.data.levels.blur} min={0} max={20} onChange={e => Store.setLevel('blur', e.target.value)} />
 

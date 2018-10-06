@@ -3,16 +3,16 @@ import * as Mutations from './Mutations'
 
 export default new Mafuba({
   data: {
-    title: 'Fotoship',
+    title: 'Cactupus',
     photoLoaded: false,
     loading: false,
     levels: {
-      brightness: 0,
-      contrast: 0,
-      saturation: 0,
-      exposure: 0,
-      vibrance: 0,
-      hue: 0,
+      brightness: 100,
+      contrast: 100,
+      saturation: 100,
+      grayscale: 0,
+      sepia: 0,
+      hue: 360,
       blur: 0
     },
     history: []
