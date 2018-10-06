@@ -25,12 +25,14 @@ export function load (photo) {
     reader.addEventListener('load', () => {
       const img = new window.Image()
       img.src = reader.result
-
       img.onload = () => {
         Cactupus.setCanvas(this.getCanvas())
         Cactupus.setImage(img)
         Cactupus.render()
-        this.setState({photoLoaded: true})
+        this.setState({
+          title: `${photo.name} - Cactupus`,
+          photoLoaded: true
+        })
       }
     }, false)
     this.resetFilters()
@@ -38,28 +40,20 @@ export function load (photo) {
 }
 
 export function resetFilters () {
-  // let levels = this.data.levels
-  // for (const setting in levels) {
-  //   levels[setting] = 0
-  // }
-  // this.setState({levels})
-  // this.updateFilters()
+  const levels = {
+    brightness: 100,
+    contrast: 100,
+    saturation: 100,
+    grayscale: 0,
+    sepia: 0,
+    hue: 360,
+    blur: 0,
+    invert: 0
+  }
+  this.setState({levels})
+  this.updateFilters()
 }
 
-// export function updateFilters () {
-//   const self = this
-//   if (this.data.photoLoaded) {
-//     window.Caman(this.getCanvas(), function () {
-//       this.revert()
-//       this.brightness(self.data.levels.brightness)
-//         .contrast(self.data.levels.contrast)
-//         .saturation(self.data.levels.saturation)
-//         .hue(self.data.levels.hue)
-//         .vibrance(self.data.levels.vibrance)
-//         .render()
-//     })
-//   }
-// }
 export function setLevel (name, value) {
   let levels = this.data.levels
   levels[name] = value
@@ -68,8 +62,28 @@ export function setLevel (name, value) {
 }
 
 export function updateFilters (value) {
-  for (const filter in this.data.levels) {
-    Cactupus[filter](this.data.levels[filter])
+  if (this.data.photoLoaded) {
+    for (const filter in this.data.levels) {
+      Cactupus[filter](this.data.levels[filter])
+    }
+    Cactupus.render()
   }
+}
+
+export function mirrorImage () {
+  Cactupus.mirror()
   Cactupus.render()
+  this.setState({mirrored: this.data.mirrored})
+}
+
+export function flipImage () {
+  Cactupus.flip()
+  Cactupus.render()
+  this.setState({flipped: this.data.flipped})
+}
+
+export function rotateImage (degrees) {
+  Cactupus.rotate(degrees)
+  Cactupus.render()
+  this.setState({flipped: this.data.flipped})
 }

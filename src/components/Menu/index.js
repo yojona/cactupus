@@ -28,11 +28,11 @@ export default function MainMenu () {
         <Command label='100%' shortcut='Ctrl + 0' />
       </Menu>
       <Menu label='Image'>
-        <Command label='Flip' shortcut='Ctrl + Down' />
-        <Command label='Mirror' shortcut='Ctrl + M' />
+        <Command label='Flip' shortcut='Ctrl + Down' onClick={() => Store.flipImage()} />
+        <Command label='Mirror' shortcut='Ctrl + M' onClick={() => Store.mirrorImage()} />
         <Separator />
-        <Command label='Rotate Left' shortcut='Ctrl + Left' />
-        <Command label='Rotate Right' shortcut='Ctrl + Right' />
+        <Command label='Rotate Left' shortcut='Ctrl + Left' onClick={() => Store.rotateImage(-90)} />
+        <Command label='Rotate Right' shortcut='Ctrl + Right' onClick={() => Store.rotateImage(90)} />
       </Menu>
       <Menu label='Filter'>
         <Command label='HDR' />

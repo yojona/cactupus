@@ -7,7 +7,7 @@ import Canvas from './components/Canvas'
 import Workspace from './components/Workspace'
 import Open from './components/Open'
 import Store from './Store'
-import Control from './components/Pane/Control';
+import Control from './components/Pane/Control'
 
 export default class App extends Component {
   componentWillMount () {
@@ -33,6 +33,7 @@ export default class App extends Component {
             <Control label='Sepia' value={Store.data.levels.sepia} min={0} max={200} onChange={e => Store.setLevel('sepia', e.target.value)} />
             <Control label='Hue' value={Store.data.levels.hue} min={0} max={360} onChange={e => Store.setLevel('hue', e.target.value)} />
             <Control label='Blur' value={Store.data.levels.blur} min={0} max={20} onChange={e => Store.setLevel('blur', e.target.value)} />
+            <Control label='Invert' value={Store.data.levels.invert} min={0} max={100} onChange={e => Store.setLevel('invert', e.target.value)} />
 
           </Pane>
           <Canvas />

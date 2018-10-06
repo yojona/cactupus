@@ -5,7 +5,8 @@ export default new Mafuba({
   data: {
     title: 'Cactupus',
     photoLoaded: false,
-    loading: false,
+    mirrored: false,
+    flipped: false,
     levels: {
       brightness: 100,
       contrast: 100,
@@ -13,7 +14,8 @@ export default new Mafuba({
       grayscale: 0,
       sepia: 0,
       hue: 360,
-      blur: 0
+      blur: 0,
+      invert: 0
     },
     history: []
   },
