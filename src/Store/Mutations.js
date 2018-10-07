@@ -5,14 +5,43 @@ export function getCanvas () {
   return document.getElementsByTagName('canvas')[0]
 }
 
+export function getZoom () {
+  return this.data.zoom
+}
+
+export function setZoom (zoom) {
+  this.setState({zoom})
+}
+
+export function zoomIn () {
+  if (this.getZoom() < 100) {
+    const zoom = this.getZoom() + 0.1
+    this.setZoom(zoom)
+  }
+}
+
+export function zoomOut () {
+  if (this.getZoom() > 0.2) {
+    const zoom = this.getZoom() - 0.1
+    this.setZoom(zoom)
+  }
+}
+
+export function getFileName (str) {
+  if (str.indexOf('.') > 0) {
+    str = str.substring(0, str.lastIndexOf('.'))
+  }
+  return str
+}
+
 export function open () {
   document.getElementById('inputFile').click()
 }
 
 export function close () {
-  this.resetFilters()
+  this.resetAll()
   this.setState({
-    title: 'Fotoship',
+    title: 'Cactupus',
     photoLoaded: false
   })
 }
@@ -31,11 +60,12 @@ export function load (photo) {
         Cactupus.render()
         this.setState({
           title: `${photo.name} - Cactupus`,
+          fileName: this.getFileName(photo.name),
           photoLoaded: true
         })
       }
     }, false)
-    this.resetFilters()
+    this.resetAll()
   }
 }
 
@@ -52,6 +82,17 @@ export function resetFilters () {
   }
   this.setState({levels})
   this.updateFilters()
+}
+
+export function resetAll () {
+  Cactupus.resetAll()
+  this.resetFilters()
+  this.setZoom(1)
+}
+
+export function restore () {
+  Cactupus.resetAll()
+  this.resetFilters()
 }
 
 export function setLevel (name, value) {
@@ -86,4 +127,8 @@ export function rotateImage (degrees) {
   Cactupus.rotate(degrees)
   Cactupus.render()
   this.setState({flipped: this.data.flipped})
+}
+
+export function save (type = 'png', name = this.data.fileName) {
+  Cactupus.save(name, type)
 }

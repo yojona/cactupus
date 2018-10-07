@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import Theme from '../Theme'
 import Store from '../Store'
+import ToolBar from './ToolBar';
 
 export default class Canvas extends Component {
   dragOver (e) {
@@ -26,12 +27,19 @@ export default class Canvas extends Component {
       onDrop={e => this.onDrop(e)}
       onDragOver={e => this.dragOver(e)}
     >
-      { !Store.data.photoLoaded && <span style={styles.drop}> Drop your photo here </span>}
+      <ToolBar />
+      { !Store.data.photoLoaded && (
+        <div style={styles.center}>
+          <span style={styles.drop}> Drop your photo here </span>
+        </div>
+      )}
       <canvas
         id='canvash'
-        width={0}
-        height={0}
-        style={{display: Store.data.photoLoaded ? 'block' : 'none'}}
+        style={{
+          display: Store.data.photoLoaded ? 'block' : 'none',
+          imageRendering: 'pixelated',
+          zoom: Store.data.zoom
+        }}
       />
     </div>
   }
@@ -39,15 +47,22 @@ export default class Canvas extends Component {
 
 const styles = {
   container: {
-    display: 'flex',
     width: '100%',
-    justifyContent: 'center',
-    alignItems: 'center'
+    margin: '10px 10px',
+    overflow: 'auto',
   },
   drop: {
-    userSelect: 'none',
     fontSize: 24,
     fontWeight: 'bold',
-    color: Theme.TEXT.DARK
+    color: Theme.TEXT.DARK,
+    cursor: 'default',
+    userSelect: 'none',
+    WebkitUserSelect: 'none'
+  },
+  center: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: '100%'
   }
 }

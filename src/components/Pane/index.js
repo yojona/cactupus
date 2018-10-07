@@ -13,6 +13,7 @@ export default function Pane (props) {
 
 const styles = {
   panel: {
+    userSelect: 'none',
     width: 220,
     height: '100%',
     borderRadius: Theme.BORDER.RADIUS,

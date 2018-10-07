@@ -4,9 +4,11 @@ import * as Mutations from './Mutations'
 export default new Mafuba({
   data: {
     title: 'Cactupus',
+    fileName: 'Untitled',
     photoLoaded: false,
     mirrored: false,
     flipped: false,
+    zoom: 1,
     levels: {
       brightness: 100,
       contrast: 100,

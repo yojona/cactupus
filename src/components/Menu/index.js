@@ -12,7 +12,8 @@ export default function MainMenu () {
         <Command label='Open...' shortcut='Ctrl + O' onClick={Store.open} />
         <Separator />
         <Command label='Close' shortcut='Ctrl + C' onClick={() => Store.close()} />
-        <Command label='Save' shortcut='Ctrl + S' />
+        <Command label='Save as PNG' shortcut='Ctrl + S' onClick={() => Store.save('png')} />
+        <Command label='Save as JPEG' onClick={() => Store.save('jpeg')} />
         <Separator />
         <Command label='Print...' shortcut='Ctrl + P' onClick={() => Store.setBrightness(20)} />
         <Separator />
@@ -23,16 +24,21 @@ export default function MainMenu () {
         <Command label='Redo' shortcut='Ctrl + Shift + Z' />
       </Menu>
       <Menu label='View'>
-        <Command label='Zoom in' shortcut='Ctrl + +' />
-        <Command label='Zoom out' shortcut='Ctrl + -' />
-        <Command label='100%' shortcut='Ctrl + 0' />
+        <Command label='Zoom in' shortcut='Ctrl + +' onClick={() => Store.zoomIn()} />
+        <Command label='Zoom out' shortcut='Ctrl + -' onClick={() => Store.zoomOut()} />
+        <Separator />
+        <Command label='Zoom 50%' shortcut='Ctrl + 0' onClick={() => Store.setZoom(0.5)} />
+        <Command label='Zoom 100%' shortcut='Ctrl + 0' onClick={() => Store.setZoom(1)} />
+        <Command label='Zoom 200%' shortcut='Ctrl + 0' onClick={() => Store.setZoom(2)} />
       </Menu>
       <Menu label='Image'>
         <Command label='Flip' shortcut='Ctrl + Down' onClick={() => Store.flipImage()} />
         <Command label='Mirror' shortcut='Ctrl + M' onClick={() => Store.mirrorImage()} />
         <Separator />
-        <Command label='Rotate Left' shortcut='Ctrl + Left' onClick={() => Store.rotateImage(-90)} />
-        <Command label='Rotate Right' shortcut='Ctrl + Right' onClick={() => Store.rotateImage(90)} />
+        <Command label='Rotate left' shortcut='Ctrl + Left' onClick={() => Store.rotateImage(-90)} />
+        <Command label='Rotate right' shortcut='Ctrl + Right' onClick={() => Store.rotateImage(90)} />
+        <Separator />
+        <Command label='Restore image' shortcut='Ctrl + r' onClick={() => Store.restore()} />
       </Menu>
       <Menu label='Filter'>
         <Command label='HDR' />

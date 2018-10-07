@@ -17,7 +17,9 @@ const styles = {
   layout: {
     paddingLeft: 16,
     outline: 'none',
+    cursor: 'default',
     userSelect: 'none',
+    WebkitUserSelect: 'none',
     display: 'flex',
     alignItems: 'center',
     margin: 0,

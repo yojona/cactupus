@@ -38,9 +38,15 @@ export default class MenuItem extends Component {
 const styles = {
   label: {
     fontSize: 13,
-    color: Theme.TEXT.DEFAULT
+    color: Theme.TEXT.DEFAULT,
+    cursor: 'default',
+    userSelect: 'none',
+    WebkitUserSelect: 'none'
   },
   dropdown: {
+    cursor: 'default',
+    userSelect: 'none',
+    WebkitUserSelect: 'none',
     position: 'relative',
     display: 'flex',
     justifyContent: 'center',
@@ -52,6 +58,9 @@ const styles = {
     color: Theme.TEXT.DEFAULT
   },
   content: {
+    cursor: 'default',
+    userSelect: 'none',
+    WebkitUserSelect: 'none',
     display: 'none',
     position: 'absolute',
     minWidth: 56,
@@ -61,7 +70,7 @@ const styles = {
     left: 0,
     padding: 0,
     background: Theme.MENU.ITEM,
-    opacity: 0.9,
+    opacity: 0.95,
     // backdropFilter: 'blur(4px)',
     borderBottomLeftRadius: 8,
     borderBottomRightRadius: 8,

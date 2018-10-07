@@ -27,6 +27,7 @@ export default class Cactus {
   }
 
   setImage (image) {
+    this.resetAll()
     this.image = image
     this.canvas.width = image.width
     this.canvas.height = image.height
@@ -64,7 +65,7 @@ export default class Cactus {
     this.filters.invert = value
   }
 
-  reset () {
+  resetFilters () {
     this.filters = {
       brightness: 100,
       contrast: 100,
@@ -73,6 +74,17 @@ export default class Cactus {
       blur: 0,
       invert: 0
     }
+  }
+
+  resetTransform () {
+    this.angle = 0
+    this.scaleX = 1
+    this.scaleY = 1
+  }
+
+  resetAll () {
+    this.resetFilters()
+    this.resetTransform()
   }
 
   getFilters () {
@@ -112,13 +124,26 @@ export default class Cactus {
   }
 
   render () {
-    let context = this.canvas.getContext('2d')
-    context.save()
-    context.clearRect(0, 0, this.image.width, this.image.height)
-    context = this.getRotation(context)
-    context.scale(this.scaleX, this.scaleY)
-    context.filter = this.getFilters()
-    context.drawImage(this.image, 0, 0, this.image.width * this.scaleX, this.image.height * this.scaleY)
-    context.restore()
+    if (this.canvas) {
+      let context = this.canvas.getContext('2d')
+      context.save()
+      context.clearRect(0, 0, this.image.width, this.image.height)
+      context = this.getRotation(context)
+      context.scale(this.scaleX, this.scaleY)
+      context.filter = this.getFilters()
+      context.drawImage(this.image, 0, 0, this.image.width * this.scaleX, this.image.height * this.scaleY)
+      context.restore()
+    }
+  }
+
+  save (name = 'untitled', type = 'png') {
+    if (this.canvas) {
+      const link = document.createElement('a')
+      link.href = this.canvas.toDataURL(`image/${type}`)
+      link.download = name
+      document.body.appendChild(link)
+      link.click()
+      document.body.removeChild(link)
+    }
   }
 }

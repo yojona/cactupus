@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import Theme from '../../Theme'
+import './Range.css'
 
 export default class Control extends Component {
   constructor () {
@@ -13,7 +14,7 @@ export default class Control extends Component {
 
   onChange (e) {
     this.updateRange(e.target.value)
-    if (this.props.onChange) this.props.onChange(e)
+    if (this.props.onChange) this.props.onChange(e.target.value)
   }
 
   updateRange (value = this.props.value) {
@@ -47,6 +48,7 @@ export default class Control extends Component {
             type='range'
             min={this.props.min || 0}
             max={this.props.max || 100}
+            step={this.props.step || 1}
             value={this.props.value}
             style={styles.control}
             onChange={this.onChange}
@@ -62,8 +64,7 @@ export default class Control extends Component {
 const styles = {
   container: {
     display: 'flex',
-    width: '100%',
-    ':hover': 'background: red'
+    width: '100%'
   },
   box: {
     display: 'flex',
@@ -85,11 +86,14 @@ const styles = {
   label: {
     color: Theme.TEXT.DARK,
     paddingRight: 8,
-    fontSize: 13
+    fontSize: 13,
+    cursor: 'default',
+    userSelect: 'none',
+    WebkitUserSelect: 'none'
   },
   control: {
     width: '100%',
-    height: 8,
+    height: 6,
     outline: 0,
     WebkitAppearance: 'none',
     border: '0 none',

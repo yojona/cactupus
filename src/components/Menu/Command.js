@@ -34,6 +34,9 @@ export default class Command extends React.Component {
 let styles = {
   container: {
     display: 'flex',
+    cursor: 'default',
+    userSelect: 'none',
+    WebkitUserSelect: 'none',
     width: 200,
     justifyContent: 'space-between',
     padding: 6,
