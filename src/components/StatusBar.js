@@ -6,6 +6,7 @@ export default class StatusBar extends Component {
   render () {
     return (
       <div style={styles.toolbar}>
+        <span style={styles.label}> File size: {Store.data.fileSize} bytes</span>
         <span style={styles.label}> Zoom: {Math.floor(Store.data.zoom * 100)}%</span>
       </div>
     )

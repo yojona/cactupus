@@ -11,6 +11,11 @@ export default class Cactus {
     this.scaleX = 1
     this.scaleY = 1
     this.angle = 0
+    this.overlay = {
+      style: 'rgba(0, 0, 0, 0)',
+      blendMode: 'source-over'
+    }
+    this.overExpose = false
     this.rotate()
     this.filters = {
       brightness: 100,
@@ -28,6 +33,7 @@ export default class Cactus {
 
   setImage (image) {
     this.resetAll()
+    this.removeImage()
     this.image = image
     this.canvas.width = image.width
     this.canvas.height = image.height
@@ -74,6 +80,11 @@ export default class Cactus {
       blur: 0,
       invert: 0
     }
+    this.overlay = {
+      style: 'rgba(0, 0, 0, 0)',
+      blendMode: 'source-over'
+    }
+    this.overExpose = false
   }
 
   resetTransform () {
@@ -131,7 +142,9 @@ export default class Cactus {
       context = this.getRotation(context)
       context.scale(this.scaleX, this.scaleY)
       context.filter = this.getFilters()
+      context = this.getComposition(context)
       context.drawImage(this.image, 0, 0, this.image.width * this.scaleX, this.image.height * this.scaleY)
+      context = this.overExposure(context)
       context.restore()
     }
   }
@@ -145,5 +158,30 @@ export default class Cactus {
       link.click()
       document.body.removeChild(link)
     }
+  }
+
+  setOverlay (style, blendMode) {
+    this.overlay = { style: style, blendMode: blendMode }
+  }
+
+  getComposition (context) {
+    context.fillStyle = this.overlay.style
+    context.fillRect(0, 0, this.canvas.width, this.canvas.height)
+    context.globalCompositeOperation = this.overlay.blendMode
+    return context
+  }
+
+  removeImage () {
+    this.image = null
+  }
+
+  overExposure (context) {
+    if (this.overExpose) {
+      context.filter = 'blur(5px) brightness(150%) contrast(50%)'
+      context.globalCompositeOperation = 'overlay'
+      context.globalAlpha = 0.80
+      context.drawImage(this.image, 0, 0, this.image.width * this.scaleX, this.image.height * this.scaleY)
+    }
+    return context
   }
 }

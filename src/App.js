@@ -10,8 +10,8 @@ import Store from './Store'
 import Control from './components/Pane/Control'
 import StatusBar from './components/StatusBar'
 import './master.css'
-import Area from './components/Area'
 import ToolBar from './components/ToolBar'
+import OnlyChrome from './components/OnlyChrome';
 
 export default class App extends Component {
   componentWillMount () {
@@ -28,19 +28,23 @@ export default class App extends Component {
     return (
       <Layout>
         <MainMenu />
+        {!!window.chrome && !!window.chrome.webstore &&
         <Workspace>
           <Pane>
-            <Control label='Brightness' value={Store.data.levels.brightness} min={0} max={200} onChange={value => Store.setLevel('brightness', value)} />
-            <Control label='Contrast' value={Store.data.levels.contrast} min={0} max={200} onChange={value => Store.setLevel('contrast', value)} />
-            <Control label='Saturation' value={Store.data.levels.saturation} min={0} max={200} onChange={value => Store.setLevel('saturation', value)} />
-            <Control label='Grayscale' value={Store.data.levels.grayscale} min={0} max={200} onChange={value => Store.setLevel('grayscale', value)} />
-            <Control label='Sepia' value={Store.data.levels.sepia} min={0} max={200} onChange={value => Store.setLevel('sepia', value)} />
-            <Control label='Hue' value={Store.data.levels.hue} min={0} max={360} onChange={value => Store.setLevel('hue', value)} />
-            <Control label='Blur' value={Store.data.levels.blur} min={0} max={20} onChange={value => Store.setLevel('blur', value)} />
-            <Control label='Invert' value={Store.data.levels.invert} min={0} max={100} onChange={value => Store.setLevel('invert', value)} />
+            <Control label='Brightness' value={Store.getBrightness()} min={0} max={200} onChange={value => Store.setLevel('brightness', value)} />
+            <Control label='Contrast' value={Store.getContrast()} min={0} max={200} onChange={value => Store.setLevel('contrast', value)} />
+            <Control label='Saturation' value={Store.getSaturation()} min={0} max={200} onChange={value => Store.setLevel('saturation', value)} />
+            <Control label='Grayscale' value={Store.getGrayscale()} min={0} max={200} onChange={value => Store.setLevel('grayscale', value)} />
+            <Control label='Sepia' value={Store.getSepia()} min={0} max={200} onChange={value => Store.setLevel('sepia', value)} />
+            <Control label='Hue' value={Store.getHue()} min={0} max={360} onChange={value => Store.setLevel('hue', value)} />
+            <Control label='Blur' value={Store.getBlur()} min={0} max={20} onChange={value => Store.setLevel('blur', value)} />
+            <Control label='Invert' value={Store.getInvert()} min={0} max={100} onChange={value => Store.setLevel('invert', value)} />
           </Pane>
+          <ToolBar />
           <Canvas zoom={() => Store.getZoom()} />
         </Workspace>
+        }
+        <OnlyChrome />
         <StatusBar />
         <Open />
       </Layout>

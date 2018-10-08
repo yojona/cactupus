@@ -6,6 +6,7 @@ export default class Control extends Component {
   constructor () {
     super()
     this.onChange = this.onChange.bind(this)
+    this.onMouseDown = this.onMouseDown.bind(this)
   }
 
   getRelativeValue (value, min, max) {
@@ -15,6 +16,10 @@ export default class Control extends Component {
   onChange (e) {
     this.updateRange(e.target.value)
     if (this.props.onChange) this.props.onChange(e.target.value)
+  }
+
+  onMouseDown (e) {
+    if (this.props.onMouseDown) this.props.onMouseDown(e.target.value)
   }
 
   updateRange (value = this.props.value) {
@@ -52,7 +57,7 @@ export default class Control extends Component {
             value={this.props.value}
             style={styles.control}
             onChange={this.onChange}
-            onMouseDown={this.onChange}
+            onMouseDown={this.onMouseDown}
           />
         </div>
 

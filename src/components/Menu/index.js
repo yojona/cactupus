@@ -14,15 +14,15 @@ export default function MainMenu () {
         <Command label='Close' shortcut='Ctrl + C' onClick={() => Store.close()} />
         <Command label='Save as PNG' shortcut='Ctrl + S' onClick={() => Store.save('png')} />
         <Command label='Save as JPEG' onClick={() => Store.save('jpeg')} />
-        <Separator />
+        {/* <Separator />
         <Command label='Print...' shortcut='Ctrl + P' onClick={() => Store.setBrightness(20)} />
         <Separator />
-        <Command label='Preferences' shortcut='Ctrl + K' />
+        <Command label='Preferences' shortcut='Ctrl + K' /> */}
       </Menu>
-      <Menu label='Edit'>
-        <Command label='Undo' shortcut='Ctrl + Z' />
+      {/* <Menu label='Edit'>
+        <Command label='Undo' shortcut='Ctrl + Z' onClick={() => Store.undo()} />
         <Command label='Redo' shortcut='Ctrl + Shift + Z' />
-      </Menu>
+      </Menu> */}
       <Menu label='View'>
         <Command label='Zoom in' shortcut='Ctrl + +' onClick={() => Store.zoomIn()} />
         <Command label='Zoom out' shortcut='Ctrl + -' onClick={() => Store.zoomOut()} />
@@ -40,19 +40,20 @@ export default function MainMenu () {
         <Separator />
         <Command label='Restore image' shortcut='Ctrl + r' onClick={() => Store.restore()} />
       </Menu>
-      <Menu label='Filter'>
-        <Command label='HDR' />
-        <Command label='Old paper' />
-        <Command label='Pleasant' />
+      <Menu label='Presets'>
+        <Command label='Soft overlay' onClick={() => Store.overExpose(true)} />
+        <Command label='Remove soft overlay' onClick={() => Store.overExpose(false)} />
         <Separator />
-        <Command label='Sepia' />
-        <Command label='Glow Sun' />
-        <Command label='Old Boot' />
-        <Command label='Pin Hole' />
-        <Command label='Jarques' />
+        <Command label='Nostalgia' onClick={() => Store.setPresetNostalgia()} />
+        <Command label='1977' onClick={() => Store.setPreset1977()} />
+        <Command label='Brannan' onClick={() => Store.setPresetBrannan()} />
+        <Command label='InkWell' onClick={() => Store.setPresetInkWell()} />
+        <Command label='Reyes' onClick={() => Store.setPresetReyes()} />
+        <Command label='Sepia' onClick={() => Store.setPresetSepia()} />
+        <Command label='Stinson' onClick={() => Store.setPresetStinson()} />
       </Menu>
       <Menu label='Help'>
-        <Command label='About...' shortcut='F1' />
+        <Command label='Jonathan Ayala yojona@msn.com' />
       </Menu>
     </MenuBar>
   )

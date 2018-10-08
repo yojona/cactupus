@@ -3,11 +3,12 @@ import * as Mutations from './Mutations'
 
 export default new Mafuba({
   data: {
-    title: 'Cactupus',
+    title: 'Corico Photo Editor',
     fileName: 'Untitled',
     photoLoaded: false,
     mirrored: false,
     flipped: false,
+    fileSize: 0,
     zoom: 1,
     levels: {
       brightness: 100,
@@ -19,7 +20,12 @@ export default new Mafuba({
       blur: 0,
       invert: 0
     },
-    history: []
+    overlay: {
+      style: 'rgba(0, 0, 0, 0)',
+      blendMode: 'source-over'
+    },
+    history: [],
+    future: []
   },
   mutations: Mutations
 })

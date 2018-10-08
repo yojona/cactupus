@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import Theme from '../Theme'
 import Store from '../Store'
-import ToolBar from './ToolBar';
 
 export default class Canvas extends Component {
   dragOver (e) {
@@ -27,7 +26,6 @@ export default class Canvas extends Component {
       onDrop={e => this.onDrop(e)}
       onDragOver={e => this.dragOver(e)}
     >
-      <ToolBar />
       { !Store.data.photoLoaded && (
         <div style={styles.center}>
           <span style={styles.drop}> Drop your photo here </span>
@@ -59,8 +57,12 @@ const styles = {
     userSelect: 'none',
     WebkitUserSelect: 'none'
   },
+  sub: {
+    color: 'white'
+  },
   center: {
     display: 'flex',
+    flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
     height: '100%'
